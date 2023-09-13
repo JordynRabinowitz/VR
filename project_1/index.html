@@ -8,16 +8,37 @@
     <title>Animated Object</title>
 </head>
 <body>
+
+    <script>
+        AFRAME.registerComponent('scale-on-mouseenter', {
+          schema: {
+            to: {default: '2.5 2.5 2.5', type: 'vec3'}
+          },
+      
+          init: function () {
+            var data = this.data;
+            var el = this.el;
+            this.el.addEventListener('mouseenter', function () {
+              el.object3D.scale.copy(data.to);
+            });
+          }
+        });
+      </script>
+
     <a-scene>
+        <a-camera>
+            <a-cursor></a-cursor>
+        </a-camera>
+        
         <a-assets>
             <img id="boxTexture" src="https://i.imgur.com/mYmmbrp.jpg">
-          </a-assets>
+        </a-assets>
         
-          <a-box src="#boxTexture" position="0 2 -5" rotation="0 45 45" scale="2 2 2" animation="property: object3D.position.y; to: 2.2; dir: alternate; dur: 2000; loop: true"></a-box>
+        <a-box src="#boxTexture" position="0 2 -5" rotation="0 45 45" scale="2 2 2" animation="property: object3D.position.y; to: 2.2; dir: alternate; dur: 2000; loop: true " scale-on-mouseenter></a-box>
         
         <!-- <a-box color="red" position="0 2 -5" rotation="0 45 45" scale="2 2 2"></a-box> -->
-        <a-entity environment="preset: forest; dressingAmount: 500"></a-entity>
-        <a-sky src="#skyTexture"></a-sky>
+        <a-entity environment="preset: tron; dressingAmount: 500"></a-entity>
+
 
       </a-scene>
 
