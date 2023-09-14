@@ -25,11 +25,12 @@
         });
       </script>
 
-    <a-scene>
+    <a-scene vr-mode-ui="enterVRButton: #myEnterVRButton">
+        <a id="myEnterVRButton" href="pink_dot.png"></a>
         <a-camera>
             <a-cursor></a-cursor>
         </a-camera>
-
+        
         <a-assets>
             <img id="boxTexture" src="https://i.imgur.com/mYmmbrp.jpg">
         </a-assets>
