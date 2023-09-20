@@ -20,6 +20,16 @@
               ></a-mixin>
       </a-assets>
       
+      <a-sky color="#FFB6C1"></a-sky>
+      
+      <!-- Lighting -->
+      <a-light position="-0.72 0.53 0.97" intensity="1.0"></a-light>
+
+      <!-- Ground -->
+      <a-plane position="0 0 0" rotation="-90 0 0" width="100" height="100" color="#b34093" material="src: #checkerboard"></a-plane>
+      
+      <!-- Dressing (Mushrooms) -->
+      <a-entity position="0 0 0" mixin="mushroom" scale="0.5 0.5 0.5"></a-entity>
       
       <a-camera player-controller></a-camera>
       <!-- dream:active:!0,seed:17,skyType:"gradient",skyColor:"#87faf4",horizonColor:"#b34093",lighting:"distant",lightPosition:{x:-.72,y:.53,z:.97},fog:.8,flatShading:!1,playArea:1,ground:"hills",groundYScale:20,groundTexture:"checkerboard",groundColor:"#b34093",groundColor2:"#c050a2",dressing:"mushrooms" -->
@@ -27,8 +37,8 @@
       <a-sphere position="0 1.25 -5" radius="1.25" color="purple" dynamic-body></a-sphere>
       <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="purple" dynamic-body></a-cylinder>
       <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4" static-body></a-plane>
-      <a-sky color="#87faf4"></a-sky>
-      <a-entity environment="preset: dream; dressingAmount: 500"></a-entity>
+      <!-- <a-sky color="#87faf4"></a-sky>
+      <a-entity environment="preset: dream; dressingAmount: 500"></a-entity> -->
     </a-scene>
   </body>
 </html>
