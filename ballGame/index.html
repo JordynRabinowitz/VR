@@ -3,16 +3,16 @@
   <head>
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <script src="https://unpkg.com/@c-frame/aframe-physics-system@4.2.2/dist/aframe-physics-system.min.js"></script>
-    <script src="/player-controller.js"></script>
-    <script src="/ball-return.js"></script>
+    <script src="./player-controller.js"></script>
+    <script src="./ball-return.js"></script>
   </head>
   <body>
-    <a-scene physics="debug: true;" pool_ball="mixin: ball; size: 10;">
+    <a-scene physics="debug: true;" pool__ball="mixin: ball; size: 10;">
       <a-assets>
         <a-mixin id="ball"
                  geometry="primitive: sphere"
                  scale="0.2 0.2 0.2"
-                 material="color: red"
+                 material="color: pink"
                  dynamic-body="shape: sphere; sphereRadius: 0.2;"
                  ball-return
               ></a-mixin>
