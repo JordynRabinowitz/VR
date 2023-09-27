@@ -1,66 +1,34 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://unpkg.com/@c-frame/aframe-physics-system@4.2.2/dist/aframe-physics-system.min.js"></script>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/@c-frame/aframe-physics-system@4.2.2/dist/aframe-physics-system.js"></script>
     <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
     <script src="./player-controller.js"></script>
     <script src="./ball-return.js"></script>
     <title>Ball Game</title>
   </head>
-  <!-- <script>
-    $ = (sel) => document.querySelector(sel)
-    $$ = (sel) => document.querySelectorAll(sel)
-    on = (elem, type, hand) => elem.addEventListener(type,hand)
-
-    let score = 0;
-    let hit = false
-    let resetId = 0
-    const resetBall = () => {
-    clearTimeout(resetId)
-    $("#ball").body.position.set(0, 0.6,-4)
-    $("#ball").body.velocity.set(0, 5,0)
-    $("#ball").body.angularVelocity.set(0, 0,0)
-    hit = false
-    resetId = setTimeout(resetBall,6000)
-  }
-    on($("#weapon"),'collide',(e)=>{
-        const ball = $("#ball")
-        if(e.detail.body.id == ball.body.id && !hit) {
-            hit = true
-            score = score + 1
-            if(e.detail.body.id == ball.body.id && !hit) {
-            $("#score").setAttribute('text','value','Score '+score)
-            }
-            clearTimeout(resetId)
-            resetId = setTimeout(resetBall,2000)
-        }
-    })
-    
-    setTimeout(resetBall,3000)
-
-    </script> -->
 
     <script>
       let score = 0
-      let hit2 = false 
-    
-      AFRAME.registerComponent('hit', {
-        init: function() {
-          this.el.addEventListener('collide', function(e) {
-            console.log('Player has collided with ', e.detail.body.el, score);
-            hit2 = true
+      AFRAME.registerComponent("ball-collision", {
+      init: function () {
+        this.el.addEventListener("collide", ({ detail }) => {
+{
+          // Check if the collision involves the ball and the character
+            console.log("Ball collided with character!");
             score = score + 1
-            if(hit2) {
-            document.querySelector("#score").setAttribute('text','value: Score = '+score)
+            if(detail.body.el.id !== "nono") {
+            document.querySelector("#score").setAttribute('text','value: Score = '+(score - 1))
             }
-          });
-        }
-
-      })
+          }
+        });
+      },
+    });
+    console.log("bruh");
     </script>
   <body>
-    <a-scene pool__ball="mixin: ball; size: 10;">
+    <a-scene physics="debug: true" pool__ball="mixin: ball; size: 10;">
       <a-assets>
         <a-mixin id="ball"
                  geometry="primitive: sphere"
@@ -68,9 +36,10 @@
                  material="color: pink"
                  dynamic-body="shape: sphere; sphereRadius: 0.2;"
                  ball-return
-                 hit
+                 ball-collision
               ></a-mixin>
               <a-asset-item id="character" src="../Ultimate Platformer Pack - Dec 2021/Character/glTF/Character.gltf"></a-asset-item>
+              <a-asset-item id="skull" src="../Ultimate Platformer Pack - Dec 2021/Enemies/glTF/Skull.gltf"></a-asset-item>
       </a-assets>
     
       <a-text id="score" value="Score = 0" position="0 5 -5" color="black" width="5" anchor="left"></a-text>
@@ -78,31 +47,44 @@
       
       <a-sky color="#FFB6C1"></a-sky>
       
-      <!-- Lighting -->
+     
       <a-light position="-0.72 0.53 0.97" intensity="1.0"></a-light>
-
-      <a-entity id="character-entity" gltf-model="#character" dynamic-body="type: dynamic; mass: 0.1; shape: box;" position="-1 0 -3"></a-entity>
-      <a-constraint
-        type="point"
-        target="#character-entity"
-        pivot="0 0 0"
-        targetpivot="0 2 0"
-      ></a-constraint>
+      <!-- <a-box position="-1 3 -3" color="purple" > -->
+        <!-- <a-entity gltf-model="#character" dynamic-body="shape: box;"></a-entity> -->
+      <!-- </a-box> -->
+      <!-- <a-entity id="hit" position="1 0 -3" dynamic-body="mass: 5; shape: box;"></a-entity> -->
+      
+      <a-sphere position="0 2.25 -5" radius="0.75" color="transparent" material="visible: false;" dynamic-body>
+        <a-entity gltf-model="#skull" position="0 -0.7 0"></a-entity>
+      </a-sphere>
+      <a-sphere  position="0 2 -5" radius="0.75" color="transparent" material="visible: false;" dynamic-body>
+        <a-entity  gltf-model="#skull" position="0 -0.7 0"></a-entity>
+      </a-sphere>
+      <a-sphere  position="0 1.75 -5" radius="0.75" color="transparent" material="visible: false;" dynamic-body>
+        <a-entity  gltf-model="#skull" position="0 -0.7 0"></a-entity>
+      </a-sphere>
+      <a-sphere  position="2 1.75 -5" radius="0.75" color="transparent" material="visible: false;" dynamic-body>
+        <a-entity  gltf-model="#skull" position="0 -0.7 0"></a-entity>
+      </a-sphere>
+      <a-sphere  position="-2 1.75 -5" radius="0.75" color="transparent" material="visible: false;" dynamic-body>
+        <a-entity  gltf-model="#skull" position="0 -0.7 0"></a-entity>
+      </a-sphere>
 
       
 
       <!-- Ground -->
-      <a-plane position="-1 2 -3" rotation="-90 0 0" width="100" height="100" color="#b34093" material="src: #checkerboard"></a-plane>
+      <a-plane id="nono" position="-1 2 -3" rotation="-90 0 0" width="100" height="100" color="#b34093" material="src: #checkerboard"></a-plane>
       
       
       <a-camera player-controller></a-camera>
-      <!-- dream:active:!0,seed:17,skyType:"gradient",skyColor:"#87faf4",horizonColor:"#b34093",lighting:"distant",lightPosition:{x:-.72,y:.53,z:.97},fog:.8,flatShading:!1,playArea:1,ground:"hills",groundYScale:20,groundTexture:"checkerboard",groundColor:"#b34093",groundColor2:"#c050a2",dressing:"mushrooms" -->
-      <a-box id='weapon' position="-1 2 -3" rotation="0 45 23" color="purple" dynamic-body></a-box>
-      <a-sphere id='weapon' position="0 1.25 -5" radius="1.25" color="purple" dynamic-body></a-sphere>
-      <a-cylinder id='weapon' position="1 0.75 -3" radius="0.5" height="1.5" color="purple" dynamic-body></a-cylinder>
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="5" height="10" color="plum" static-body></a-plane>
-      <!-- <a-sky color="#87faf4"></a-sky>
-      <a-entity environment="preset: dream; dressingAmount: 500"></a-entity> -->
+      
+      <!-- <a-box id='hit' position="-1 2 -3" rotation="0 45 23" color="purple" dynamic-body></a-box> -->
+      <!-- <a-sphere id='hit' position="0 1.25 -5" radius="1.25" color="purple" dynamic-body></a-sphere> -->
+      <!-- <a-cylinder id='hit' position="1 0.75 -3" radius="0.5" height="1.5" color="purple" dynamic-body></a-cylinder> -->
+      <a-plane id="nono" position="0 0 -4" rotation="-90 0 0" width="5" height="10" color="plum" static-body></a-plane>
+    
+      <a-entity id="nono" environment="preset: dream; dressingAmount: 500"></a-entity>
+
     </a-scene>
   </body>
 </html>
