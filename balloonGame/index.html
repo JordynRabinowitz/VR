@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/@c-frame/aframe-physics-system@4.2.2/dist/aframe-physics-system.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+    <!-- <script src="./player-controller.js"></script>
+    <script src="./ball-return.js"></script> -->
+    <title>Ball Game</title>
+  </head>
+
+    <script>
+      let score = 0
+      AFRAME.registerComponent("ball-collision", {
+      init: function () {
+        this.el.addEventListener("collide", ({ detail }) => {
+{
+          // Check if the collision involves the ball and the character
+            console.log("Ball collided with character!");
+            score = score + 1
+            if(detail.body.el.id !== "nono") {
+            document.querySelector("#score").setAttribute('text','value: Score = '+(score - 1))
+            }
+          }
+        });
+      },
+    });
+
+    AFRAME.registerComponent('balloon', {
+        init: function () {
+          // Create a custom balloon geometry
+          const balloonGeometry = new THREE.SphereGeometry(0.125, 32, 32);
+          const balloonMaterial = new THREE.MeshBasicMaterial({ color: '#FF5733' });
+          const balloonMesh = new THREE.Mesh(balloonGeometry, balloonMaterial);
+
+          // Position the balloon
+          balloonMesh.position.set(0, 2, -3);
+        
+          // Add the balloon mesh to the A-Frame entity
+          this.el.setObject3D('mesh', balloonMesh);
+          // Add dynamic body to balloons
+        },
+      });
+    </script>
+  <body>
+    <a-scene physics="debug: true">
+      <a-assets>
+        <a-asset-item id="dart-obj" src="./assets/throwing_dart_v1_L3.123cce958837-fa5f-4635-8f4a-9e4d59dbe115/11750_throwing_dart_v1_L3.obj"></a-asset-item>
+        <a-asset-item id="dart-mtl" src="./assets/throwing_dart_v1_L3.123cce958837-fa5f-4635-8f4a-9e4d59dbe115/11750_throwing_dart_v1_L3.mtl"></a-asset-item>
+      </a-assets>
+    
+    
+      <a-text id="score" value="Score = 0" position="0 5 -5" color="black" width="5" anchor="left"></a-text>
+      
+      <a-sky color="#FFB6C1"></a-sky>
+      
+     
+      <a-light position="-0.72 0.53 0.97" intensity="1.0"></a-light>
+      <!-- <a-box position="-1 3 -3" color="purple" > -->
+        <!-- <a-entity gltf-model="#character" dynamic-body="shape: box;"></a-entity> -->
+      <!-- </a-box> -->
+      <!-- <a-entity id="hit" position="1 0 -3" dynamic-body="mass: 5; shape: box;"></a-entity> -->
+    
+
+      <a-cylinder
+      id="nono"
+        position="0 2 -3"    
+        radius="1"           
+        height="3.2"           
+        color="#FF5733"      
+      ></a-cylinder>
+        <a-box position="0 2.25 -5" radius="0.5" color="transparent" material="visible: false;" dynamic-body>
+      <a-entity obj-model="obj: #dart-obj; mtl: #dart-mtl" scale="0.3 0.3 0.3" position="3 -1 -3"></a-entity>
+      </a-box>
+
+      <!-- first row -->
+
+      <a-entity balloon material="color: black" position="0.7071 1 0.7071"></a-entity>
+      <a-entity balloon material="color: black" position="0.5556 1 0.8315"></a-entity>
+      <a-entity balloon material="color: black" position="0.3827 1 0.9239"></a-entity>
+      <a-entity balloon material="color: black" position="0.1951 1 0.9808"></a-entity>
+      <a-entity balloon material="color: black" position="0 1 1"></a-entity>
+      <a-entity balloon material="color: pink" position="-0.1951 -1 0.9808" static-body="shape: sphere" ></a-entity>
+      <a-entity balloon material="color: black" position="-0.3827 1 0.9239"></a-entity>
+      <a-entity balloon material="color: black" position="-0.5556 1 0.8315"></a-entity>
+      <a-entity balloon material="color: black" position="-0.7071 1 0.7071"></a-entity>
+      <a-entity balloon material="color: black" position="-0.8315 1 0.5556"></a-entity>
+      <a-entity balloon material="color: black" position="-0.9239 1 0.3827"></a-entity>
+      <a-entity balloon material="color: black" position="-0.9808 1 0.1951"></a-entity>
+      <a-entity balloon material="color: black" position="-1 1 0"></a-entity>
+      <a-entity balloon material="color: black" position="-0.9808 1 -0.1951"></a-entity>
+      <a-entity balloon material="color: black" position="-0.9239 1 -0.3827"></a-entity>
+      <a-entity balloon material="color: black" position="-0.8315 1 -0.5556"></a-entity>
+      <a-entity balloon material="color: black" position="-0.7071 1 -0.7071"></a-entity>
+      <a-entity balloon material="color: black" position="-0.5556 1 -0.8315"></a-entity>
+      <a-entity balloon material="color: black" position="-0.3827 1 -0.9239"></a-entity>
+      <a-entity balloon material="color: black" position="-0.1951 1 -0.9808"></a-entity>
+      <a-entity balloon material="color: black" position="0 1 -1"></a-entity>
+      <a-entity balloon material="color: black" position="0.1951 1 -0.9808"></a-entity>
+      <a-entity balloon material="color: black" position="0.3827 1 -0.9239"></a-entity>
+      <a-entity balloon material="color: black" position="0.5556 1 -0.8315"></a-entity>
+      <a-entity balloon material="color: black" position="0.7071 1 -0.7071"></a-entity>
+      <a-entity balloon material="color: black" position="0.7071 1 -0.7071"></a-entity>
+      <a-entity balloon material="color: black" position="0.8315 1 -0.5556"></a-entity>
+      <!-- second row -->
+      <a-entity balloon material="color: black" position="1 0.6 0"></a-entity>
+      <a-entity balloon material="color: black" position="0.9808 0.6 0.1951"></a-entity>
+      <a-entity balloon material="color: black" position="0.9239 0.6 0.3827"></a-entity>
+      <a-entity balloon material="color: black" position="0.8315 0.6 0.5556"></a-entity>
+      <a-entity balloon material="color: black" position="0.7071 0.6 0.7071"></a-entity>
+      <a-entity balloon material="color: black" position="0.5556 0.6 0.8315"></a-entity>
+      <a-entity balloon material="color: black" position="0.3827 0.6 0.9239"></a-entity>
+      <a-entity balloon material="color: black" position="0.1951 0.6 0.9808"></a-entity>
+      <a-entity balloon material="color: black" position="0 0.6 1"></a-entity>
+      <a-entity balloon material="color: black" position="-0.1951 0.6 0.9808"></a-entity>
+      <a-entity balloon material="color: black" position="-0.3827 0.6 0.9239"></a-entity>
+      <a-entity balloon material="color: black" position="-0.5556 0.6 0.8315"></a-entity>
+      <a-entity balloon material="color: black" position="-0.7071 0.6 0.7071"></a-entity>
+      <a-entity balloon material="color: black" position="-0.8315 0.6 0.5556"></a-entity>
+      <a-entity balloon material="color: black" position="-0.9239 0.6 0.3827"></a-entity>
+      <a-entity balloon material="color: black" position="-0.9808 0.6 0.1951"></a-entity>
+      <a-entity balloon material="color: black" position="-1 0.6 0"></a-entity>
+      <a-entity balloon material="color: black" position="-0.9808 0.6 -0.1951"></a-entity>
+      <a-entity balloon material="color: black" position="-0.9239 0.6 -0.3827"></a-entity>
+      <a-entity balloon material="color: black" position="-0.8315 0.6 -0.5556"></a-entity>
+      <a-entity balloon material="color: black" position="-0.7071 0.6 -0.7071"></a-entity>
+      <a-entity balloon material="color: black" position="-0.5556 0.6 -0.8315"></a-entity>
+      <a-entity balloon material="color: black" position="-0.3827 0.6 -0.9239"></a-entity>
+      <a-entity balloon material="color: black" position="-0.1951 0.6 -0.9808"></a-entity>
+      <a-entity balloon material="color: black" position="0 0.6 -1"></a-entity>
+      <a-entity balloon material="color: black" position="0.1951 0.6 -0.9808"></a-entity>
+      <a-entity balloon material="color: black" position="0.3827 0.6 -0.9239"></a-entity>
+      <a-entity balloon material="color: black" position="0.5556 0.6 -0.8315"></a-entity>
+      <a-entity balloon material="color: black" position="0.7071 0.6 -0.7071"></a-entity>
+      <a-entity balloon material="color: black" position="0.7071 0.6 -0.7071"></a-entity>
+      <a-entity balloon material="color: black" position="0.8315 0.6 -0.5556"></a-entity>
+      
+      
+
+      
+      
+      
+      
+      
+      <a-camera player-controller></a-camera>
+      
+      <!-- <a-box id='hit' position="-1 2 -3" rotation="0 45 23" color="purple" dynamic-body></a-box> -->
+      <!-- <a-sphere id='hit' position="0 1.25 -5" radius="1.25" color="purple" dynamic-body></a-sphere> -->
+      <!-- <a-cylinder id='hit' position="1 0.75 -3" radius="0.5" height="1.5" color="purple" dynamic-body></a-cylinder> -->
+      <a-plane id="nono" position="0 2 0" rotation="-90 0 0" width="100" height="100" color="plum" static-body></a-plane>
+    
+      <a-entity id="nono" environment="preset: poison; dressingAmount: 1000"></a-entity>
+
+    </a-scene>
+  </body>
+</html>
