@@ -3,7 +3,9 @@
   <head>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <script src="https://unpkg.com/@c-frame/aframe-physics-system@4.2.2/dist/aframe-physics-system.js"></script>
+    
     <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+    <script src="./dart.js"></script>
     <!-- <script src="./player-controller.js"></script>
     <script src="./ball-return.js"></script> -->
     <title>Balloon Game</title>
@@ -77,6 +79,16 @@
         <a-box position="0 2.25 -5" width="0.75" height="0.5" color="transparent" material="visible: false;" dynamic-body>
       <a-entity obj-model="obj: #dart-obj; mtl: #dart-mtl" scale="0.3 0.3 0.3" position="3 -1 -3"></a-entity>
       </a-box>
+
+      <a-box
+        id="dart"
+        position="-3 2.1 -5"
+        color="red"
+        dynamic-body
+        aim-dart
+        height="0.5"
+        width="0.5"
+      ></a-box>
 
       <!-- first row -->
 
