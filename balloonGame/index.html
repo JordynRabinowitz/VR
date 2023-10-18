@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <script src="https://unpkg.com/@c-frame/aframe-physics-system@4.2.2/dist/aframe-physics-system.js"></script>
-    
     <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
     <script src="./dart.js"></script>
     <script src="./player-controller.js"></script>
-    <!-- <script src="./ball-return.js"></script>  -->
+    <!-- <script src="./teleport.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
     <title>Balloon Game</title>
   </head>
 
@@ -22,6 +22,7 @@
             score = score + 1
             if(detail.body.el.id !== "nono") {
             document.querySelector("#score").setAttribute('text','value: Score = '+(score - 1))
+            entityEl.parentNode.removeChild(detail);
             }
           }
         });
@@ -47,9 +48,26 @@
           
         },
       });
+
+    
+    AFRAME.registerComponent("character-controller", {
+      events: {
+        "navigation-start": function () {
+          if (this.el.hasAttribute("simple-navmesh-constraint")) {
+            this.el.setAttribute("simple-navmesh-constraint", "enabled", false);
+          }
+        },
+        "navigation-end": function () {
+          if (this.el.hasAttribute("simple-navmesh-constraint")) {
+            this.el.setAttribute("simple-navmesh-constraint", "enabled", true);
+          }
+        },
+      },
+    });
     </script>
   <body>
-    <a-scene physics="debug: true" vr-mode-ui="cardboardModeEnabled: true" pool__dart="mixin: dart_mixin; size: 10;">
+    <a-scene cursor="rayOrigin: mouse" raycaster="objects: .clickable" renderer="colorManagement: true;"
+      physics="debug: true" vr-mode-ui="cardboardModeEnabled: true" pool__dart="mixin: dart_mixin; size: 10;">
       <a-assets>
 
         <a-asset-item id="dart-obj" src="./assets/throwing_dart_v1_L3.123cce958837-fa5f-4635-8f4a-9e4d59dbe115/11750_throwing_dart_v1_L3.obj"></a-asset-item>
@@ -57,24 +75,50 @@
         <a-asset-item id="teddy" src="../balloonGame/assets/teddy_GLTF.gltf"></a-asset-item>
         <a-asset-item id="octo" src="../balloonGame/assets/uploads_files_3641433_Octopus_toy.glb"></a-asset-item>
         <a-asset-item id="dino" src="../balloonGame/assets/uploads_files_2311292_toy-dino.glb"></a-asset-item>
-        <a-mixin id="dart_mixin">
-          <a-box position="0 3 -4.5" width="0.02" height="0.02" color="transparent" material="visible: false;" dynamic-body ball-return ball-collision>
-          <a-entity obj-model="obj: #dart-obj; mtl: #dart-mtl" scale="0.2 0.2 0.2" position="0 0 0" ></a-entity>
-          </a-box>
-        </a-mixin>
+       <a-mixin id="dart_mixin" obj-model="obj: #dart-obj; mtl: #dart-mtl" scale="0.2 0.2 0.2" geometry="primitive: box"
+       dynamic-body="shape: box;"
+       ball-collision ball-return
+       
+       
+       >
+
+       </a-mixin>
+          
       </a-assets>
+      <a-entity id="cameraRig" position="0 0 0" cursor-teleport="cameraRig: #cameraRig; cameraHead: #head; collisionEntities: .collision; ignoreEntities: .clickable">
+        <a-entity id="head" position="0 1.52 0" camera look-controls="reverseMouseDrag: true"></a-entity>
+        <a-entity
+          laser-controls="hand: left"
+          raycaster="objects: .clickable; far: 100"
+          line="color: red; opacity: 0.75"
+          blink-controls="
+            collisionEntities: .collision;
+            cameraRig: #cameraRig;
+            teleportOrigin: #head;
+            curveShootingSpeed: 6"></a-entity>
+        <a-entity
+          laser-controls="hand: right"
+          raycaster="objects: .clickable"
+          line="color: red; opacity: 0.75"
+          blink-controls="
+            collisionEntities: .collision;
+            cameraRig: #cameraRig;
+            teleportOrigin: #head;
+            curveShootingSpeed: 6"></a-entity>
+      </a-entity>
+
+     
     
-    
-      <a-text id="score" value="Score = 0" position="0 5 -5" color="black" width="5" anchor="left"></a-text>
+     
+
+      <a-text id="score" value="Score = 0" position="-5 3 -5" color="black" width="5" anchor="left"></a-text>
+      <a-text id="balls" value="Balls left = 10" position="-5 2 -5" color="black" width="5" anchor="left"></a-text>
       
       <a-sky color="#FFB6C1"></a-sky>
       
      
       <a-light position="-0.72 0.53 0.97" intensity="1.0"></a-light>
-      <!-- <a-box position="-1 3 -3" color="purple" > -->
-        <!-- <a-entity gltf-model="#character" dynamic-body="shape: box;"></a-entity> -->
-      <!-- </a-box> -->
-      <!-- <a-entity id="hit" position="1 0 -3" dynamic-body="mass: 5; shape: box;"></a-entity> -->
+    
     
       <!-- <a-entity gltf-model="#teddy" scale="0.3 0.3 0.3" position="0 2.5 -3"></a-entity> -->
       <a-entity gltf-model="#octo" scale="0.2 0.2 0.2" position="-0.75 4 -2.5"></a-entity>
@@ -86,9 +130,7 @@
         height="2.75"           
         color="#FF5733"      
       ></a-cylinder>
-      <!-- <a-box position="0 3 -4.5" width="0.02" height="0.02" color="transparent" material="visible: false;" dynamic-body>
-      <a-entity obj-model="obj: #dart-obj; mtl: #dart-mtl" scale="0.2 0.2 0.2" position="0 0 0" ball-return></a-entity>
-      </a-box> -->
+      
 
       <a-box
         id="dart"
@@ -300,9 +342,9 @@
       <!-- <a-box id='hit' position="-1 2 -3" rotation="0 45 23" color="purple" dynamic-body></a-box> -->
       <!-- <a-sphere id='hit' position="0 1.25 -5" radius="1.25" color="purple" dynamic-body></a-sphere> -->
       <!-- <a-cylinder id='hit' position="1 0.75 -3" radius="0.5" height="1.5" color="purple" dynamic-body></a-cylinder> -->
-      <a-plane id="nono" position="0 2 0" rotation="-90 0 0" width="100" height="100" color="plum" static-body></a-plane>
+      <a-plane class="collision" id="nono" position="0 2 0" rotation="-90 0 0" width="100" height="100" color="plum" static-body></a-plane>
     
-      <a-entity id="nono" environment="preset: forest; dressingAmount: 1000"></a-entity>
+      <a-entity class="collision" id="nono" environment="preset: forest; dressingAmount: 1000"></a-entity>
 
     </a-scene>
   </body>

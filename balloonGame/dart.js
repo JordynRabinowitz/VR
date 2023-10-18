@@ -74,7 +74,7 @@
 //   }
 // });
 
-let balls = 10
+let balls = 20
 AFRAME.registerComponent("ball-return", {
   init() {
     this.el.addEventListener("collide", ({ detail }) => {
@@ -85,9 +85,9 @@ AFRAME.registerComponent("ball-return", {
       if(this.el.body.position.y < 2 && balls > 0) {
     
           balls = balls - 1
-          document.querySelector("#dart").setAttribute('text','value: Balls left = '+balls)
+          document.querySelector("#balls").setAttribute('text','value: Balls left = '+balls)
           if(balls <= 0){
-            document.querySelector("#dart").setAttribute('text','value: Game Over :(')
+            document.querySelector("#balls").setAttribute('text','value: Game Over :(')
             return 0;
           }
           this.el.sceneEl.components.pool__dart.returnEntity(this.el);
