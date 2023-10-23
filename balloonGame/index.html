@@ -13,21 +13,7 @@
 
     <script>
       let score = 0
-      AFRAME.registerComponent("ball-collision", {
-      init: function () {
-        this.el.addEventListener("collide", ({ detail }) => {
-{
-          // Check if the collision involves the ball and the character
-            console.log("Ball collided with character!");
-            score = score + 1
-            if(detail.body.el.id !== "nono") {
-            document.querySelector("#score").setAttribute('text','value: Score = '+(score - 1))
-            entityEl.parentNode.removeChild(detail);
-            }
-          }
-        });
-      },
-    });
+  
 
     AFRAME.registerComponent('balloon', {
         init: function () {
@@ -44,6 +30,25 @@
 
           this.el.setAttribute('static-body', {
             shape: 'sphere'
+          });
+
+          this.el.addEventListener("collide", (e) => {
+          {
+            const detail = e.detail;
+            // Check if the collision involves the ball and the character
+              console.log("Ball collided with character!");
+              console.log(this.el.object3D.parent);
+                // console.log(obj.parent);
+                // console.log(obj.children);
+              score = score + 1
+              console.log(detail);
+              if(e.target.id !== "nono") {
+                document.querySelector("#score").setAttribute('text','value: Score = '+(score - 1))
+                setTimeout(() => this.el.sceneEl.removeChild(this.el), 0);
+                
+                // this.el.collidingEntity.sceneEl.removeChild(this.el.collidingEntity);
+              }
+            }
           });
           
         },
@@ -67,45 +72,26 @@
     </script>
   <body>
     <a-scene cursor="rayOrigin: mouse" raycaster="objects: .clickable" renderer="colorManagement: true;"
-      physics="debug: true" vr-mode-ui="cardboardModeEnabled: true" pool__dart="mixin: dart_mixin; size: 10;">
+      physics="debug: true" vr-mode-ui="cardboardModeEnabled: true" pool__dart="mixin: dart_mixin; size: 20;">
       <a-assets>
 
-        <a-asset-item id="dart-obj" src="./assets/throwing_dart_v1_L3.123cce958837-fa5f-4635-8f4a-9e4d59dbe115/11750_throwing_dart_v1_L3.obj"></a-asset-item>
-        <a-asset-item id="dart-mtl" src="./assets/throwing_dart_v1_L3.123cce958837-fa5f-4635-8f4a-9e4d59dbe115/11750_throwing_dart_v1_L3.mtl"></a-asset-item>
+        <a-asset-item preload="auto" id="dart-obj" src="./assets/throwing_dart_v1_L3.123cce958837-fa5f-4635-8f4a-9e4d59dbe115/11750_throwing_dart_v1_L3.obj"></a-asset-item>
+        <a-asset-item loaded="() => console.log('l')" id="dart-mtl" src="./assets/throwing_dart_v1_L3.123cce958837-fa5f-4635-8f4a-9e4d59dbe115/11750_throwing_dart_v1_L3.mtl"></a-asset-item>
         <a-asset-item id="teddy" src="../balloonGame/assets/teddy_GLTF.gltf"></a-asset-item>
         <a-asset-item id="octo" src="../balloonGame/assets/uploads_files_3641433_Octopus_toy.glb"></a-asset-item>
-        <a-asset-item id="dino" src="../balloonGame/assets/uploads_files_2311292_toy-dino.glb"></a-asset-item>
-       <a-mixin id="dart_mixin" obj-model="obj: #dart-obj; mtl: #dart-mtl" scale="0.2 0.2 0.2" geometry="primitive: box"
-       dynamic-body="shape: box;"
-       ball-collision ball-return
-       
-       
-       >
+        <!-- <a-asset-item id="dino" src="../balloonGame/assets/uploads_files_2311292_toy-dino.glb"></a-asset-item> -->
+        <a-mixin id="dart_mixin" obj-model="obj: #dart-obj; mtl: #dart-mtl" scale="0.2 0.2 0.2" geometry="primitive: box"
+        dynamic-body="shape: box;"
+        ball-collision ball-return
+        >
 
        </a-mixin>
           
       </a-assets>
-      <a-entity id="cameraRig" position="0 0 0" cursor-teleport="cameraRig: #cameraRig; cameraHead: #head; collisionEntities: .collision; ignoreEntities: .clickable">
-        <a-entity id="head" position="0 1.52 0" camera look-controls="reverseMouseDrag: true"></a-entity>
-        <a-entity
-          laser-controls="hand: left"
-          raycaster="objects: .clickable; far: 100"
-          line="color: red; opacity: 0.75"
-          blink-controls="
-            collisionEntities: .collision;
-            cameraRig: #cameraRig;
-            teleportOrigin: #head;
-            curveShootingSpeed: 6"></a-entity>
-        <a-entity
-          laser-controls="hand: right"
-          raycaster="objects: .clickable"
-          line="color: red; opacity: 0.75"
-          blink-controls="
-            collisionEntities: .collision;
-            cameraRig: #cameraRig;
-            teleportOrigin: #head;
-            curveShootingSpeed: 6"></a-entity>
-      </a-entity>
+
+      <a-camera id="player" teleporter look-controls movement-controls>
+        <a-entity id="ray" raycaster="objects: .collidable; showLine: true" position="0 0 0" rotation="0 0 0"></a-entity>
+      </a-camera>
 
      
     
@@ -122,7 +108,7 @@
     
       <!-- <a-entity gltf-model="#teddy" scale="0.3 0.3 0.3" position="0 2.5 -3"></a-entity> -->
       <a-entity gltf-model="#octo" scale="0.2 0.2 0.2" position="-0.75 4 -2.5"></a-entity>
-      <a-entity gltf-model="#dino"  scale="0.4 0.4 0.4" position="0 3.3 -2.25"></a-entity>
+      <!-- <a-entity gltf-model="#dino"  scale="0.4 0.4 0.4" position="0 3.3 -2.25"></a-entity> -->
       <a-cylinder
       id="nono"
         position="0 2 -3"    
@@ -336,15 +322,14 @@
       
       
       
-      
-      <a-camera player-controller></a-camera>
+
       
       <!-- <a-box id='hit' position="-1 2 -3" rotation="0 45 23" color="purple" dynamic-body></a-box> -->
       <!-- <a-sphere id='hit' position="0 1.25 -5" radius="1.25" color="purple" dynamic-body></a-sphere> -->
       <!-- <a-cylinder id='hit' position="1 0.75 -3" radius="0.5" height="1.5" color="purple" dynamic-body></a-cylinder> -->
-      <a-plane class="collision" id="nono" position="0 2 0" rotation="-90 0 0" width="100" height="100" color="plum" static-body></a-plane>
+      <a-plane class="teleport-target collidable" id="nono" position="0 -0.2 0" rotation="-90 0 0" width="100" height="100" color="blue" static-body></a-plane>
     
-      <a-entity class="collision" id="nono" environment="preset: forest; dressingAmount: 1000"></a-entity>
+      <a-entity id="nono" environment="preset: forest; dressingAmount: 1000"></a-entity>
 
     </a-scene>
   </body>
