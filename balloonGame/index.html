@@ -4,7 +4,7 @@
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <script src="https://unpkg.com/@c-frame/aframe-physics-system@4.2.2/dist/aframe-physics-system.js"></script>
     <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
-    <script src="./dart.js"></script>
+    <!-- <script src="./dart.js"></script> -->
     <script src="./player-controller.js"></script>
     <!-- <script src="./teleport.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
@@ -45,8 +45,7 @@
               if(e.target.id !== "nono") {
                 document.querySelector("#score").setAttribute('text','value: Score = '+(score - 1))
                 setTimeout(() => this.el.sceneEl.removeChild(this.el), 0);
-                
-                // this.el.collidingEntity.sceneEl.removeChild(this.el.collidingEntity);
+            
               }
             }
           });
@@ -98,7 +97,7 @@
      
 
       <a-text id="score" value="Score = 0" position="-5 3 -5" color="black" width="5" anchor="left"></a-text>
-      <a-text id="balls" value="Balls left = 10" position="-5 2 -5" color="black" width="5" anchor="left"></a-text>
+      <a-text id="balls" value="Darts left = 20" position="-5 2 -5" color="black" width="5" anchor="left"></a-text>
       
       <a-sky color="#FFB6C1"></a-sky>
       
@@ -107,7 +106,7 @@
     
     
       <!-- <a-entity gltf-model="#teddy" scale="0.3 0.3 0.3" position="0 2.5 -3"></a-entity> -->
-      <a-entity gltf-model="#octo" scale="0.2 0.2 0.2" position="-0.75 4 -2.5"></a-entity>
+      <a-entity id="prize" gltf-model="#octo" scale="0.2 0.2 0.2" position="-0.75 4 -2.5"></a-entity>
       <!-- <a-entity gltf-model="#dino"  scale="0.4 0.4 0.4" position="0 3.3 -2.25"></a-entity> -->
       <a-cylinder
       id="nono"
@@ -117,15 +116,6 @@
         color="#FF5733"      
       ></a-cylinder>
       
-
-      <a-box
-        id="dart"
-        position="-3 2.1 -5"
-        color="red"
-        dynamic-body
-        height="0.5"
-        width="0.5"
-      ></a-box>
 
       <!-- first row -->
       <a-entity balloon material="color: black"position="1 3 -3.4"></a-entity>
