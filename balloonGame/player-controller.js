@@ -16,7 +16,7 @@ AFRAME.registerComponent("teleporter", {
         console.log(score);
         if (balls <= 0) return;
   
-        else if(score >= 5){
+        else if(score >= 50){
           document.querySelector("#score").setAttribute('text','value: YOU WON AN OCTO!!!!');
           document.querySelector("#score").setAttribute('scale', '5 5 5');
           document.querySelector("#score").setAttribute('position', {x: -10, y: 5, z: -5});
