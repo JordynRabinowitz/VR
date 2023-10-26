@@ -28,6 +28,7 @@ AFRAME.registerComponent("teleporter", {
           .setAttribute("text", "value: Game Over :(");
           return;
         }
+        document.querySelector("#rule").setAttribute('text','value: ');
         // get reference of the pool of objects from the aframe scene
         const newBall = this.el.sceneEl.components.pool__dart.requestEntity();
         // activate the entity we got

@@ -71,7 +71,7 @@
     </script>
   <body>
     <a-scene cursor="rayOrigin: mouse" raycaster="objects: .clickable" renderer="colorManagement: true;"
-      physics="debug: true" vr-mode-ui="cardboardModeEnabled: true" pool__dart="mixin: dart_mixin; size: 20;">
+      vr-mode-ui="cardboardModeEnabled: true" pool__dart="mixin: dart_mixin; size: 20;">
       <a-assets>
 
         <a-asset-item preload="auto" id="dart-obj" src="./assets/throwing_dart_v1_L3.123cce958837-fa5f-4635-8f4a-9e4d59dbe115/11750_throwing_dart_v1_L3.obj"></a-asset-item>
@@ -95,7 +95,7 @@
      
     
      
-
+      <a-text id="rule" value="Get to 50 to win!" position="-5 4 -5" color="black" width="5" anchor="left"></a-text>
       <a-text id="score" value="Score = 0" position="-5 3 -5" color="black" width="5" anchor="left"></a-text>
       <a-text id="balls" value="Darts left = 20" position="-5 2 -5" color="black" width="5" anchor="left"></a-text>
       
@@ -106,214 +106,209 @@
     
     
       <!-- <a-entity gltf-model="#teddy" scale="0.3 0.3 0.3" position="0 2.5 -3"></a-entity> -->
-      <a-entity id="prize" gltf-model="#octo" scale="0.2 0.2 0.2" position="-0.75 4 -2.5"></a-entity>
+      <a-entity id="prize" gltf-model="#octo" scale="0.2 0.2 0.2" position="0 4 -2"></a-entity>
       <!-- <a-entity gltf-model="#dino"  scale="0.4 0.4 0.4" position="0 3.3 -2.25"></a-entity> -->
       <a-cylinder
       id="nono"
         position="0 2 -3"    
         radius="1"           
         height="2.75"           
-        color="#FF5733"      
+        color="black"      
       ></a-cylinder>
       
 
       <!-- first row -->
-      <a-entity balloon material="color: black"position="1 3 -3.4"></a-entity>
-      <a-entity balloon material="color: black" position="1 3 -3.2"></a-entity>
-      <a-entity balloon material="color: black" position="1 3 -3"></a-entity>
-      <a-entity balloon material="color: black" position="0.9808 3 -2.8049"></a-entity>
-      <a-entity balloon material="color: black" position="0.9239 3 -2.6173"></a-entity>
-      <a-entity balloon material="color: black" position="0.8315 3 -2.4444"></a-entity>
-      <a-entity balloon material="color: black" position="0.7071 3 -2.2929" ></a-entity>
-      <a-entity balloon material="color: black" position="0.5556 3 -2.1685" ></a-entity>
-      <a-entity balloon material="color: black" position="0.3827 3 -2.0761" ></a-entity>
-      <a-entity balloon material="color: black" position="0.1951 3 -2.0192" ></a-entity>
-      <a-entity balloon material="color: black" position="0 3 -2" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.1951 3 -2.0192" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.3827 3 -2.0761" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.5556 3 -2.1685" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.7071 3 -2.2929"></a-entity>
-      <a-entity balloon material="color: black" position="-0.8315 3 -2.4444" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.9239 3 -2.6173" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.9808 3 -2.8049" ></a-entity>
-      <a-entity balloon material="color: black" position="-1 3 -3" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.9808 3 -3.1951" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.9239 3 -3.3827" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.8315 3 -3.5556" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.7071 3 -3.7071" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.5556 3 -3.8315" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.3827 3 -3.9239" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.1951 3 -3.9808" ></a-entity>
-      <a-entity balloon material="color: black" position="0 3 -4" ></a-entity>
-      <a-entity balloon material="color: black" position="0.1951 3 -3.9808" ></a-entity>
-      <a-entity balloon material="color: black" position="0.3827 3 -3.9239" ></a-entity>
-      <a-entity balloon material="color: black" position="0.5556 3 -3.8315" ></a-entity>
-      <a-entity balloon material="color: black" position="0.7071 3 -3.7071" ></a-entity>
-      <a-entity balloon material="color: black" position="0.7071 3 -3.7071" ></a-entity>
-      <a-entity balloon material="color: black" position="0.8315 3 -3.5556" ></a-entity>
+      <a-entity balloon material="color: red"position="1 3 -3.4"></a-entity>
+      <a-entity balloon material="color: orange" position="1 3 -3.2"></a-entity>
+      <a-entity balloon material="color: yellow" position="1 3 -3"></a-entity>
+      <a-entity balloon material="color: green" position="0.9808 3 -2.8049"></a-entity>
+      <a-entity balloon material="color: blue" position="0.9239 3 -2.6173"></a-entity>
+      <a-entity balloon material="color: purple" position="0.8315 3 -2.4444"></a-entity>
+      <a-entity balloon material="color: pink" position="0.7071 3 -2.2929" ></a-entity>
+      <a-entity balloon material="color: red" position="0.5556 3 -2.1685" ></a-entity>
+      <a-entity balloon material="color: orange" position="0.3827 3 -2.0761" ></a-entity>
+      <a-entity balloon material="color: yellow" position="0.1951 3 -2.0192" ></a-entity>
+      <a-entity balloon material="color: blue" position="0 3 -2" ></a-entity>
+      <a-entity balloon material="color: purple" position="-0.1951 3 -2.0192" ></a-entity>
+      <a-entity balloon material="color: pink" position="-0.3827 3 -2.0761" ></a-entity>
+      <a-entity balloon material="color: red" position="-0.5556 3 -2.1685" ></a-entity>
+      <a-entity balloon material="color: orange" position="-0.7071 3 -2.2929"></a-entity>
+      <a-entity balloon material="color: yellow" position="-0.8315 3 -2.4444" ></a-entity>
+      <a-entity balloon material="color: green" position="-0.9239 3 -2.6173" ></a-entity>
+      <a-entity balloon material="color: blue" position="-0.9808 3 -2.8049" ></a-entity>
+      <a-entity balloon material="color: purple" position="-1 3 -3" ></a-entity>
+      <a-entity balloon material="color: pink" position="-0.9808 3 -3.1951" ></a-entity>
+      <a-entity balloon material="color: red" position="-0.9239 3 -3.3827" ></a-entity>
+      <a-entity balloon material="color: orange" position="-0.8315 3 -3.5556" ></a-entity>
+      <a-entity balloon material="color: yellow" position="-0.7071 3 -3.7071" ></a-entity>
+      <a-entity balloon material="color: green" position="-0.5556 3 -3.8315" ></a-entity>
+      <a-entity balloon material="color: blue" position="-0.3827 3 -3.9239" ></a-entity>
+      <a-entity balloon material="color: purple" position="-0.1951 3 -3.9808" ></a-entity>
+      <a-entity balloon material="color: pink" position="0 3 -4" ></a-entity>
+      <a-entity balloon material="color: red" position="0.1951 3 -3.9808" ></a-entity>
+      <a-entity balloon material="color: orange" position="0.3827 3 -3.9239" ></a-entity>
+      <a-entity balloon material="color: yellow" position="0.5556 3 -3.8315" ></a-entity>
+      <a-entity balloon material="color: green" position="0.7071 3 -3.7071" ></a-entity>
+      <a-entity balloon material="color: blue" position="0.7071 3 -3.7071" ></a-entity>
+      <a-entity balloon material="color: purple" position="0.8315 3 -3.5556" ></a-entity>
       
       <!-- second row -->
-      <a-entity balloon material="color: black" position="1 2.6 -3.4"></a-entity>
-      <a-entity balloon material="color: black" position="1 2.6 -3.2"></a-entity>
-      <a-entity balloon material="color: black" position="1 2.6 -3"></a-entity>
-      <a-entity balloon material="color: black" position="0.9808 2.6 -2.8049"></a-entity>
-      <a-entity balloon material="color: black" position="0.9239 2.6 -2.6173"></a-entity>
-      <a-entity balloon material="color: black" position="0.8315 2.6 -2.4444"></a-entity>
-      <a-entity balloon material="color: black" position="1 2.6 -3"></a-entity>
-      <a-entity balloon material="color: black" position="0.9808 2.6 -2.8049"></a-entity>
-      <a-entity balloon material="color: black" position="0.9239 2.6 -2.6173"></a-entity>
-      <a-entity balloon material="color: black" position="0.8315 2.6 -2.4444"></a-entity>
-      <a-entity balloon material="color: black" position="0.7071 2.6 -2.2929" ></a-entity>
-      <a-entity balloon material="color: black" position="0.5556 2.6 -2.1685" ></a-entity>
-      <a-entity balloon material="color: black" position="0.3827 2.6 -2.0761" ></a-entity>
-      <a-entity balloon material="color: black" position="0.1951 2.6 -2.0192" ></a-entity>
-      <a-entity balloon material="color: black" position="0 2.6 -2" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.1951 2.6 -2.0192" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.3827 2.6 -2.0761" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.5556 2.6 -2.1685" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.7071 2.6 -2.2929"></a-entity>
-      <a-entity balloon material="color: black" position="-0.8315 2.6 -2.4444" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.9239 2.6 -2.6173" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.9808 2.6 -2.8049" ></a-entity>
-      <a-entity balloon material="color: black" position="-1 2.6 -3" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.9808 2.6 -3.1951" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.9239 2.6 -3.3827" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.8315 2.6 -3.5556" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.7071 2.6 -3.7071" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.5556 2.6 -3.8315" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.3827 2.6 -3.9239" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.1951 2.6 -3.9808" ></a-entity>
-      <a-entity balloon material="color: black" position="0 2.6 -4" ></a-entity>
-      <a-entity balloon material="color: black" position="0.1951 2.6 -3.9808" ></a-entity>
-      <a-entity balloon material="color: black" position="0.3827 2.6 -3.9239" ></a-entity>
-      <a-entity balloon material="color: black" position="0.5556 2.6 -3.8315" ></a-entity>
-      <a-entity balloon material="color: black" position="0.7071 2.6 -3.7071" ></a-entity>
-      <a-entity balloon material="color: black" position="0.7071 2.6 -3.7071" ></a-entity>
-      <a-entity balloon material="color: black" position="0.8315 2.6 -3.5556" ></a-entity>
+      <a-entity balloon material="color: red" position="1 2.6 -3.4"></a-entity>
+      <a-entity balloon material="color: orange" position="1 2.6 -3.2"></a-entity>
+      <a-entity balloon material="color: yellow" position="1 2.6 -3"></a-entity>
+      <a-entity balloon material="color: green" position="0.9808 2.6 -2.8049"></a-entity>
+      <a-entity balloon material="color: blue" position="0.9239 2.6 -2.6173"></a-entity>
+      <a-entity balloon material="color: purple" position="0.8315 2.6 -2.4444"></a-entity>
+      <a-entity balloon material="color: red" position="1 2.6 -3"></a-entity>
+      <a-entity balloon material="color: orange" position="0.9808 2.6 -2.8049"></a-entity>
+      <a-entity balloon material="color: yellow" position="0.9239 2.6 -2.6173"></a-entity>
+      <a-entity balloon material="color: blue" position="0.8315 2.6 -2.4444"></a-entity>
+      <a-entity balloon material="color: pink" position="0.7071 2.6 -2.2929" ></a-entity>
+      <a-entity balloon material="color: red" position="0.5556 2.6 -2.1685" ></a-entity>
+      <a-entity balloon material="color: orange" position="0.3827 2.6 -2.0761" ></a-entity>
+      <a-entity balloon material="color: yellow" position="0.1951 2.6 -2.0192" ></a-entity>
+      <a-entity balloon material="color: blue" position="0 2.6 -2" ></a-entity>
+      <a-entity balloon material="color: purple" position="-0.1951 2.6 -2.0192" ></a-entity>
+      <a-entity balloon material="color: pink" position="-0.3827 2.6 -2.0761" ></a-entity>
+      <a-entity balloon material="color: red" position="-0.5556 2.6 -2.1685" ></a-entity>
+      <a-entity balloon material="color: orange" position="-0.7071 2.6 -2.2929"></a-entity>
+      <a-entity balloon material="color: yellow" position="-0.8315 2.6 -2.4444" ></a-entity>
+      <a-entity balloon material="color: green" position="-0.9239 2.6 -2.6173" ></a-entity>
+      <a-entity balloon material="color: blue" position="-0.9808 2.6 -2.8049" ></a-entity>
+      <a-entity balloon material="color: purple" position="-1 2.6 -3" ></a-entity>
+      <a-entity balloon material="color: pink" position="-0.9808 2.6 -3.1951" ></a-entity>
+      <a-entity balloon material="color: red" position="-0.9239 2.6 -3.3827" ></a-entity>
+      <a-entity balloon material="color: orange" position="-0.8315 2.6 -3.5556" ></a-entity>
+      <a-entity balloon material="color: yellow" position="-0.7071 2.6 -3.7071" ></a-entity>
+      <a-entity balloon material="color: blue" position="-0.5556 2.6 -3.8315" ></a-entity>
+      <a-entity balloon material="color: purple" position="-0.3827 2.6 -3.9239" ></a-entity>
+      <a-entity balloon material="color: pink" position="-0.1951 2.6 -3.9808" ></a-entity>
+      <a-entity balloon material="color: red" position="0 2.6 -4" ></a-entity>
+      <a-entity balloon material="color: orange" position="0.1951 2.6 -3.9808" ></a-entity>
+      <a-entity balloon material="color: yellow" position="0.3827 2.6 -3.9239" ></a-entity>
+      <a-entity balloon material="color: green" position="0.5556 2.6 -3.8315" ></a-entity>
+      <a-entity balloon material="color: blue" position="0.7071 2.6 -3.7071" ></a-entity>
+      <a-entity balloon material="color: pink" position="0.7071 2.6 -3.7071" ></a-entity>
+      <a-entity balloon material="color: red" position="0.8315 2.6 -3.5556" ></a-entity>
 
       <!-- third row -->
-      <a-entity balloon material="color: black" position="1 2.2 -3.4"></a-entity>
-      <a-entity balloon material="color: black" position="1 2.2 -3.2"></a-entity>
-      <a-entity balloon material="color: black" position="1 2.2 -3"></a-entity>
-      <a-entity balloon material="color: black" position="0.9808 2.2 -2.8049"></a-entity>
-      <a-entity balloon material="color: black" position="0.9239 2.2 -2.6173"></a-entity>
-      <a-entity balloon material="color: black" position="0.8315 2.2 -2.4444"></a-entity>
-      <a-entity balloon material="color: black" position="1 2.2 -3"></a-entity>
-      <a-entity balloon material="color: black" position="0.9808 2.2 -2.8049"></a-entity>
-      <a-entity balloon material="color: black" position="0.9239 2.2 -2.6173"></a-entity>
-      <a-entity balloon material="color: black" position="0.8315 2.2 -2.4444"></a-entity>
-      <a-entity balloon material="color: black" position="0.7071 2.2 -2.2929" ></a-entity>
-      <a-entity balloon material="color: black" position="0.5556 2.2 -2.1685" ></a-entity>
-      <a-entity balloon material="color: black" position="0.3827 2.2 -2.0761" ></a-entity>
-      <a-entity balloon material="color: black" position="0.1951 2.2 -2.0192" ></a-entity>
-      <a-entity balloon material="color: black" position="0 2.2 -2" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.1951 2.2 -2.0192" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.3827 2.2 -2.0761" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.5556 2.2 -2.1685" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.7071 2.2 -2.2929"></a-entity>
-      <a-entity balloon material="color: black" position="-0.8315 2.2 -2.4444" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.9239 2.2 -2.6173" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.9808 2.2 -2.8049" ></a-entity>
-      <a-entity balloon material="color: black" position="-1 2.2 -3" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.9808 2.2 -3.1951" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.9239 2.2 -3.3827" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.8315 2.2 -3.5556" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.7071 2.2 -3.7071" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.5556 2.2 -3.8315" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.3827 2.2 -3.9239" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.1951 2.2 -3.9808" ></a-entity>
-      <a-entity balloon material="color: black" position="0 2.2 -4" ></a-entity>
-      <a-entity balloon material="color: black" position="0.1951 2.2 -3.9808" ></a-entity>
-      <a-entity balloon material="color: black" position="0.3827 2.2 -3.9239" ></a-entity>
-      <a-entity balloon material="color: black" position="0.5556 2.2 -3.8315" ></a-entity>
-      <a-entity balloon material="color: black" position="0.7071 2.2 -3.7071" ></a-entity>
-      <a-entity balloon material="color: black" position="0.7071 2.2 -3.7071" ></a-entity>
-      <a-entity balloon material="color: black" position="0.8315 2.2 -3.5556" ></a-entity>
-      <!-- fourth row -->
-      <a-entity balloon material="color: black" position="1 1.8 -3.4"></a-entity>
-      <a-entity balloon material="color: black" position="1 1.8 -3.2"></a-entity>
-      <a-entity balloon material="color: black" position="1 1.8 -3"></a-entity>
-      <a-entity balloon material="color: black" position="0.9808 1.8 -2.8049"></a-entity>
-      <a-entity balloon material="color: black" position="0.9239 1.8 -2.6173"></a-entity>
-      <a-entity balloon material="color: black" position="0.8315 1.8 -2.4444"></a-entity>
-      <a-entity balloon material="color: black" position="1 1.8 -3"></a-entity>
-      <a-entity balloon material="color: black" position="0.9808 1.8 -2.8049"></a-entity>
-      <a-entity balloon material="color: black" position="0.9239 1.8 -2.6173"></a-entity>
-      <a-entity balloon material="color: black" position="0.8315 1.8 -2.4444"></a-entity>
-      <a-entity balloon material="color: black" position="0.7071 1.8 -2.2929" ></a-entity>
-      <a-entity balloon material="color: black" position="0.5556 1.8 -2.1685" ></a-entity>
-      <a-entity balloon material="color: black" position="0.3827 1.8 -2.0761" ></a-entity>
-      <a-entity balloon material="color: black" position="0.1951 1.8 -2.0192" ></a-entity>
-      <a-entity balloon material="color: black" position="0 1.8 -2" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.1951 1.8 -2.0192" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.3827 1.8 -2.0761" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.5556 1.8 -2.1685" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.7071 1.8 -2.2929"></a-entity>
-      <a-entity balloon material="color: black" position="-0.8315 1.8 -2.4444" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.9239 1.8 -2.6173" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.9808 1.8 -2.8049" ></a-entity>
-      <a-entity balloon material="color: black" position="-1 1.8 -3" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.9808 1.8 -3.1951" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.9239 1.8 -3.3827" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.8315 1.8 -3.5556" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.7071 1.8 -3.7071" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.5556 1.8 -3.8315" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.3827 1.8 -3.9239" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.1951 1.8 -3.9808" ></a-entity>
-      <a-entity balloon material="color: black" position="0 1.8 -4" ></a-entity>
-      <a-entity balloon material="color: black" position="0.1951 1.8 -3.9808" ></a-entity>
-      <a-entity balloon material="color: black" position="0.3827 1.8 -3.9239" ></a-entity>
-      <a-entity balloon material="color: black" position="0.5556 1.8 -3.8315" ></a-entity>
-      <a-entity balloon material="color: black" position="0.7071 1.8 -3.7071" ></a-entity>
-      <a-entity balloon material="color: black" position="0.7071 1.8 -3.7071" ></a-entity>
-      <a-entity balloon material="color: black" position="0.8315 1.8 -3.5556" ></a-entity>
-      <!-- fifth row -->
-      <a-entity balloon material="color: black" position="1 1.4 -3.4"></a-entity>
-      <a-entity balloon material="color: black" position="1 1.4 -3.2"></a-entity>
-      <a-entity balloon material="color: black" position="1 1.4 -3"></a-entity>
-      <a-entity balloon material="color: black" position="0.9808 1.4 -2.8049"></a-entity>
-      <a-entity balloon material="color: black" position="0.9239 1.4 -2.6173"></a-entity>
-      <a-entity balloon material="color: black" position="0.8315 1.4 -2.4444"></a-entity>
-      <a-entity balloon material="color: black" position="1 1.4 -3"></a-entity>
-      <a-entity balloon material="color: black" position="0.9808 1.4 -2.8049"></a-entity>
-      <a-entity balloon material="color: black" position="0.9239 1.4 -2.6173"></a-entity>
-      <a-entity balloon material="color: black" position="0.8315 1.4 -2.4444"></a-entity>
-      <a-entity balloon material="color: black" position="0.7071 1.4 -2.2929" ></a-entity>
-      <a-entity balloon material="color: black" position="0.5556 1.4 -2.1685" ></a-entity>
-      <a-entity balloon material="color: black" position="0.3827 1.4 -2.0761" ></a-entity>
-      <a-entity balloon material="color: black" position="0.1951 1.4 -2.0192" ></a-entity>
-      <a-entity balloon material="color: black" position="0 1.4 -2" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.1951 1.4 -2.0192" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.3827 1.4 -2.0761" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.5556 1.4 -2.1685" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.7071 1.4 -2.2929"></a-entity>
-      <a-entity balloon material="color: black" position="-0.8315 1.4 -2.4444" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.9239 1.4 -2.6173" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.9808 1.4 -2.8049" ></a-entity>
-      <a-entity balloon material="color: black" position="-1 1.4 -3"></a-entity>
-      <a-entity balloon material="color: black" position="-0.9808 1.4 -3.1951" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.9239 1.4 -3.3827" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.8315 1.4 -3.5556" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.7071 1.4 -3.7071" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.5556 1.4 -3.8315" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.3827 1.4 -3.9239" ></a-entity>
-      <a-entity balloon material="color: black" position="-0.1951 1.4 -3.9808" ></a-entity>
-      <a-entity balloon material="color: black" position="0 1.4 -4" ></a-entity>
-      <a-entity balloon material="color: black" position="0.1951 1.4 -3.9808" ></a-entity>
-      <a-entity balloon material="color: black" position="0.3827 1.4 -3.9239" ></a-entity>
-      <a-entity balloon material="color: black" position="0.5556 1.4 -3.8315" ></a-entity>
-      <a-entity balloon material="color: black" position="0.7071 1.4 -3.7071" ></a-entity>
-      <a-entity balloon material="color: black" position="0.7071 1.4 -3.7071" ></a-entity>
-      <a-entity balloon material="color: black" position="0.8315 1.4 -3.5556" ></a-entity>
-      
-      
+      <a-entity balloon material="color: red" position="1 2.2 -3.4"></a-entity>
+      <a-entity balloon material="color: orange" position="1 2.2 -3.2"></a-entity>
+      <a-entity balloon material="color: yellow" position="1 2.2 -3"></a-entity>
+      <a-entity balloon material="color: green" position="0.9808 2.2 -2.8049"></a-entity>
+      <a-entity balloon material="color: blue" position="0.9239 2.2 -2.6173"></a-entity>
+      <a-entity balloon material="color: purple" position="0.8315 2.2 -2.4444"></a-entity>
+      <a-entity balloon material="color: pink" position="1 2.2 -3"></a-entity>
+      <a-entity balloon material="color: red" position="0.9808 2.2 -2.8049"></a-entity>
+      <a-entity balloon material="color: orange" position="0.9239 2.2 -2.6173"></a-entity>
+      <a-entity balloon material="color: yellow" position="0.8315 2.2 -2.4444"></a-entity>
+      <a-entity balloon material="color: blue" position="0.7071 2.2 -2.2929" ></a-entity>
+      <a-entity balloon material="color: red" position="0.5556 2.2 -2.1685" ></a-entity>
+      <a-entity balloon material="color: orange" position="0.3827 2.2 -2.0761" ></a-entity>
+      <a-entity balloon material="color: yellow" position="0.1951 2.2 -2.0192" ></a-entity>
+      <a-entity balloon material="color: blue" position="0 2.2 -2" ></a-entity>
+      <a-entity balloon material="color: purple" position="-0.1951 2.2 -2.0192" ></a-entity>
+      <a-entity balloon material="color: pink" position="-0.3827 2.2 -2.0761" ></a-entity>
+      <a-entity balloon material="color: red" position="-0.5556 2.2 -2.1685" ></a-entity>
+      <a-entity balloon material="color: orange" position="-0.7071 2.2 -2.2929"></a-entity>
+      <a-entity balloon material="color: yellow" position="-0.8315 2.2 -2.4444" ></a-entity>
+      <a-entity balloon material="color: green" position="-0.9239 2.2 -2.6173" ></a-entity>
+      <a-entity balloon material="color: blue" position="-0.9808 2.2 -2.8049" ></a-entity>
+      <a-entity balloon material="color: purple" position="-1 2.2 -3" ></a-entity>
+      <a-entity balloon material="color: pink" position="-0.9808 2.2 -3.1951" ></a-entity>
+      <a-entity balloon material="color: red" position="-0.9239 2.2 -3.3827" ></a-entity>
+      <a-entity balloon material="color: orange" position="-0.8315 2.2 -3.5556" ></a-entity>
+      <a-entity balloon material="color: yellow" position="-0.7071 2.2 -3.7071" ></a-entity>
+      <a-entity balloon material="color: blue" position="-0.5556 2.2 -3.8315" ></a-entity>
+      <a-entity balloon material="color: purple" position="-0.3827 2.2 -3.9239" ></a-entity>
+      <a-entity balloon material="color: pink" position="-0.1951 2.2 -3.9808" ></a-entity>
+      <a-entity balloon material="color: red" position="0 2.2 -4" ></a-entity>
+      <a-entity balloon material="color: orange" position="0.1951 2.2 -3.9808" ></a-entity>
+      <a-entity balloon material="color: yellow" position="0.3827 2.2 -3.9239" ></a-entity>
+      <a-entity balloon material="color: green" position="0.5556 2.2 -3.8315" ></a-entity>
+      <a-entity balloon material="color: blue" position="0.7071 2.2 -3.7071" ></a-entity>
+      <a-entity balloon material="color: pink" position="0.7071 2.2 -3.7071" ></a-entity>
+      <a-entity balloon material="color: red" position="0.8315 2.2 -3.5556" ></a-entity>
 
-      
-      
-      
-      
+      <!-- fourth Row -->
+      <a-entity balloon material="color: red" position="1 1.8 -3.4"></a-entity>
+      <a-entity balloon material="color: orange" position="1 1.8 -3.2"></a-entity>
+      <a-entity balloon material="color: yellow" position="1 1.8 -3"></a-entity>
+      <a-entity balloon material="color: green" position="0.9808 1.8 -2.8049"></a-entity>
+      <a-entity balloon material="color: blue" position="0.9239 1.8 -2.6173"></a-entity>
+      <a-entity balloon material="color: purple" position="0.8315 1.8 -2.4444"></a-entity>
+      <a-entity balloon material="color: pink" position="1 1.8 -3"></a-entity>
+      <a-entity balloon material="color: red" position="0.9808 1.8 -2.8049"></a-entity>
+      <a-entity balloon material="color: orange" position="0.9239 1.8 -2.6173"></a-entity>
+      <a-entity balloon material="color: yellow" position="0.8315 1.8 -2.4444"></a-entity>
+      <a-entity balloon material="color: blue" position="0.7071 1.8 -2.2929" ></a-entity>
+      <a-entity balloon material="color: red" position="0.5556 1.8 -2.1685" ></a-entity>
+      <a-entity balloon material="color: orange" position="0.3827 1.8 -2.0761" ></a-entity>
+      <a-entity balloon material="color: yellow" position="0.1951 1.8 -2.0192" ></a-entity>
+      <a-entity balloon material="color: blue" position="0 1.8 -2" ></a-entity>
+      <a-entity balloon material="color: purple" position="-0.1951 1.8 -2.0192" ></a-entity>
+      <a-entity balloon material="color: pink" position="-0.3827 1.8 -2.0761" ></a-entity>
+      <a-entity balloon material="color: red" position="-0.5556 1.8 -2.1685" ></a-entity>
+      <a-entity balloon material="color: orange" position="-0.7071 1.8 -2.2929"></a-entity>
+      <a-entity balloon material="color: yellow" position="-0.8315 1.8 -2.4444" ></a-entity>
+      <a-entity balloon material="color: green" position="-0.9239 1.8 -2.6173" ></a-entity>
+      <a-entity balloon material="color: blue" position="-0.9808 1.8 -2.8049" ></a-entity>
+      <a-entity balloon material="color: purple" position="-1 1.8 -3" ></a-entity>
+      <a-entity balloon material="color: pink" position="-0.9808 1.8 -3.1951" ></a-entity>
+      <a-entity balloon material="color: red" position="-0.9239 1.8 -3.3827" ></a-entity>
+      <a-entity balloon material="color: orange" position="-0.8315 1.8 -3.5556" ></a-entity>
+      <a-entity balloon material="color: yellow" position="-0.7071 1.8 -3.7071" ></a-entity>
+      <a-entity balloon material="color: blue" position="-0.5556 1.8 -3.8315" ></a-entity>
+      <a-entity balloon material="color: purple" position="-0.3827 1.8 -3.9239" ></a-entity>
+      <a-entity balloon material="color: pink" position="-0.1951 1.8 -3.9808" ></a-entity>
+      <a-entity balloon material="color: red" position="0 1.8 -4" ></a-entity>
+      <a-entity balloon material="color: orange" position="0.1951 1.8 -3.9808" ></a-entity>
+      <a-entity balloon material="color: yellow" position="0.3827 1.8 -3.9239" ></a-entity>
+      <a-entity balloon material="color: green" position="0.5556 1.8 -3.8315" ></a-entity>
+      <a-entity balloon material="color: blue" position="0.7071 1.8 -3.7071" ></a-entity>
+      <a-entity balloon material="color: pink" position="0.7071 1.8 -3.7071" ></a-entity>
+      <a-entity balloon material="color: red" position="0.8315 1.8 -3.5556" ></a-entity>
 
-      
+      <!-- fifth Row -->
+      <a-entity balloon material="color: red" position="1 1.4 -3.4"></a-entity>
+      <a-entity balloon material="color: orange" position="1 1.4 -3.2"></a-entity>
+      <a-entity balloon material="color: yellow" position="1 1.4 -3"></a-entity>
+      <a-entity balloon material="color: green" position="0.9808 1.4 -2.8049"></a-entity>
+      <a-entity balloon material="color: blue" position="0.9239 1.4 -2.6173"></a-entity>
+      <a-entity balloon material="color: purple" position="0.8315 1.4 -2.4444"></a-entity>
+      <a-entity balloon material="color: pink" position="1 1.4 -3"></a-entity>
+      <a-entity balloon material="color: red" position="0.9808 1.4 -2.8049"></a-entity>
+      <a-entity balloon material="color: orange" position="0.9239 1.4 -2.6173"></a-entity>
+      <a-entity balloon material="color: yellow" position="0.8315 1.4 -2.4444"></a-entity>
+      <a-entity balloon material="color: blue" position="0.7071 1.4 -2.2929" ></a-entity>
+      <a-entity balloon material="color: red" position="0.5556 1.4 -2.1685" ></a-entity>
+      <a-entity balloon material="color: orange" position="0.3827 1.4 -2.0761" ></a-entity>
+      <a-entity balloon material="color: yellow" position="0.1951 1.4 -2.0192" ></a-entity>
+      <a-entity balloon material="color: blue" position="0 1.4 -2" ></a-entity>
+      <a-entity balloon material="color: purple" position="-0.1951 1.4 -2.0192" ></a-entity>
+      <a-entity balloon material="color: pink" position="-0.3827 1.4 -2.0761" ></a-entity>
+      <a-entity balloon material="color: red" position="-0.5556 1.4 -2.1685" ></a-entity>
+      <a-entity balloon material="color: orange" position="-0.7071 1.4 -2.2929"></a-entity>
+      <a-entity balloon material="color: yellow" position="-0.8315 1.4 -2.4444" ></a-entity>
+      <a-entity balloon material="color: green" position="-0.9239 1.4 -2.6173" ></a-entity>
+      <a-entity balloon material="color: blue" position="-0.9808 1.4 -2.8049" ></a-entity>
+      <a-entity balloon material="color: purple" position="-1 1.4 -3"></a-entity>
+      <a-entity balloon material="color: pink" position="-0.9808 1.4 -3.1951" ></a-entity>
+      <a-entity balloon material="color: red" position="-0.9239 1.4 -3.3827" ></a-entity>
+      <a-entity balloon material="color: orange" position="-0.8315 1.4 -3.5556" ></a-entity>
+      <a-entity balloon material="color: yellow" position="-0.7071 1.4 -3.7071" ></a-entity>
+      <a-entity balloon material="color: green" position="-0.5556 1.4 -3.8315" ></a-entity>
+      <a-entity balloon material="color: blue" position="-0.3827 1.4 -3.9239" ></a-entity>
+      <a-entity balloon material="color: purple" position="-0.1951 1.4 -3.9808" ></a-entity>
+      <a-entity balloon material="color: pink" position="0 1.4 -4" ></a-entity>
+      <a-entity balloon material="color: red" position="0.1951 1.4 -3.9808" ></a-entity>
+      <a-entity balloon material="color: orange" position="0.3827 1.4 -3.9239" ></a-entity>
+      <a-entity balloon material="color: yellow" position="0.5556 1.4 -3.8315" ></a-entity>
+      <a-entity balloon material="color: green" position="0.7071 1.4 -3.7071" ></a-entity>
+      <a-entity balloon material="color: blue" position="0.7071 1.4 -3.7071" ></a-entity>
+      <a-entity balloon material="color: purple" position="0.8315 1.4 -3.5556" ></a-entity>
+
+  
       <!-- <a-box id='hit' position="-1 2 -3" rotation="0 45 23" color="purple" dynamic-body></a-box> -->
       <!-- <a-sphere id='hit' position="0 1.25 -5" radius="1.25" color="purple" dynamic-body></a-sphere> -->
       <!-- <a-cylinder id='hit' position="1 0.75 -3" radius="0.5" height="1.5" color="purple" dynamic-body></a-cylinder> -->
