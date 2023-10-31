@@ -79,7 +79,11 @@
         <a-asset-item id="teddy" src="../balloonGame/assets/teddy_GLTF.gltf"></a-asset-item>
         <a-asset-item id="octo" src="../balloonGame/assets/uploads_files_3641433_Octopus_toy.glb"></a-asset-item>
         <!-- <a-asset-item id="dino" src="../balloonGame/assets/uploads_files_2311292_toy-dino.glb"></a-asset-item> -->
-        <a-mixin id="dart_mixin" obj-model="obj: #dart-obj; mtl: #dart-mtl" scale="0.2 0.2 0.2" geometry="primitive: box"
+        <!-- <a-mixin id="dart_mixin" obj-model="obj: #dart-obj; mtl: #dart-mtl" scale="0.2 0.2 0.2" geometry="primitive: box"
+        dynamic-body="shape: box;"
+        ball-collision ball-return
+        > -->
+        <a-mixin id="dart_mixin"  scale="0.2 0.2 0.2" material="color: pink" geometry="primitive: box"
         dynamic-body="shape: box;"
         ball-collision ball-return
         >
