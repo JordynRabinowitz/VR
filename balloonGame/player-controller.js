@@ -11,7 +11,7 @@ AFRAME.registerComponent("teleporter", {
       if (getHit) {
         console.log(getHit);
         this.el.object3D.position.x = getHit.point.x;
-        this.els.object3D.position.z = getHit.point.z;
+        this.el.object3D.position.z = getHit.point.z;
       } else {
         console.log(score);
         if (balls <= 0) return;
