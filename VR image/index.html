@@ -1,0 +1,83 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+    <script src="https://unpkg.com/@c-frame/aframe-physics-system@4.2.2/dist/aframe-physics-system.js"></script>
+    <script src="./player-controller.js"></script>
+    <script src="./ball-return.js"></script>
+  </head>
+  <script>
+    let score = 0
+    AFRAME.registerComponent("ball-collision", {
+    init: function () {
+      this.el.addEventListener("collide", ({ detail }) => {
+{
+        // Check if the collision involves the ball and the character
+          console.log("Ball collided with character!");
+          score = score + 1
+          if(detail.body.el.id !== "nono") {
+          document.querySelector("#score").setAttribute('text','value: Score = '+(score - 1))
+          }
+        }
+      });
+    },
+  });
+  </script>
+  <body>
+    <a-scene pool__ball="mixin: ball; size: 10;">
+<!--       <a-entity id="nono" environment="preset: starry; dressingAmount: 500"></a-entity> -->
+      <a-assets>
+        <a-mixin id="ball"
+                 geometry="primitive: sphere"
+                 scale="0.2 0.2 0.2"
+                 material="color: black"
+                 dynamic-body="shape: sphere; sphereRadius: 0.2;"
+                 ball-return
+                 ball-collision
+              ></a-mixin>
+              <a-asset-item id="character" src="../Ultimate Platformer Pack - Dec 2021/Character/glTF/Character.gltf"></a-asset-item>
+              <a-asset-item id="skull" src="../Ultimate Platformer Pack - Dec 2021/Enemies/glTF/Skull.gltf"></a-asset-item>
+      </a-assets>
+    
+      <a-text id="score" value="Score = 0" position="0 5 -5" color="white" width="8" anchor="left"></a-text>
+      <a-text id="balls" value="Balls left = 10" position="0 4 -5" color="white" width="8" anchor="left"></a-text>
+      
+      <a-sky id="nono" src="photoshoppedSpace.png"></a-sky>
+      
+     
+      <a-light position="-0.72 0.53 0.97" intensity="1.0"></a-light>
+      <!-- <a-box position="-1 3 -3" color="purple" > -->
+        <!-- <a-entity gltf-model="#character" dynamic-body="shape: box;"></a-entity> -->
+      <!-- </a-box> -->
+      <!-- <a-entity id="hit" position="1 0 -3" dynamic-body="mass: 5; shape: box;"></a-entity> -->
+      
+      <a-sphere position="0 2.25 -5" radius="0.75" color="transparent" color="transparent" material="visible: false;" dynamic-body>
+        <a-entity  gltf-model="#skull" position="0 -0.7 0"></a-entity>
+      </a-sphere>
+      <a-sphere  position="0 2 -5" radius="0.75" color="transparent" material="visible: false;" dynamic-body>
+        <a-entity  gltf-model="#skull" position="0 -0.7 0"></a-entity>
+      </a-sphere>
+      <a-sphere  position="0 1.75 -5" radius="0.75" color="transparent" material="visible: false;" dynamic-body>
+        <a-entity  gltf-model="#skull" position="0 -0.7 0"></a-entity>
+      </a-sphere>
+      <a-sphere  position="2 1.75 -5" radius="0.75" color="transparent" material="visible: false;" dynamic-body>
+        <a-entity  gltf-model="#skull" position="0 -0.7 0"></a-entity>
+      </a-sphere>
+      <a-sphere  position="-2 1.75 -5" radius="0.75" color="transparent" material="visible: false;" dynamic-body>
+        <a-entity  gltf-model="#skull" position="0 -0.7 0"></a-entity>
+      </a-sphere>
+
+      
+
+    
+      
+      
+      <a-camera player-controller></a-camera>
+      
+      <!-- <a-box id='hit' position="-1 2 -3" rotation="0 45 23" color="purple" dynamic-body></a-box> -->
+      <!-- <a-sphere id='hit' position="0 1.25 -5" radius="1.25" color="purple" dynamic-body></a-sphere> -->
+      <!-- <a-cylinder id='hit' position="1 0.75 -3" radius="0.5" height="1.5" color="purple" dynamic-body></a-cylinder> -->
+      <a-plane id="nono" position="0 -2 0" rotation="-90 0 0" width="5" height="10" color="black" static-body></a-plane>
+    </a-scene>
+  </body>
+</html>
